@@ -29,7 +29,7 @@ some xss code like:
 ```
 - alert something to interference 
 ```html
-<script>alert('You've been hacked');</script>
+<script>alert("You've been hacked");</script>
 ```
 - Listen to the user's keyboard input
 ```html

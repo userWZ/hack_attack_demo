@@ -63,11 +63,11 @@ class ReadPost(View):
 
 @method_decorator(csrf_exempt, name='dispatch')
 class AddComment(View):
-
     def post(self, request):
 
         post = Post.objects.get(id=request.POST['post-id'])
-        if str(request.user) != 'AnonymousUser':
+
+        if request.user.is_authenticated:
             comment = Comment(
                 post=post,
                 author=request.user,

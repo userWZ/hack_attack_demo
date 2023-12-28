@@ -19,6 +19,7 @@
             {% endfor %}
         </ul>
         <form method="POST" action="/add-comment" class="mt-5">
+            {% csrf_token %}
             <input type="hidden" name="post-id" value='{{ post.id }}'>
             <div class="form-group">
                 <textarea class="form-control" name="comment-textarea" id="comment-textarea" rows="3"></textarea>

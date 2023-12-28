@@ -67,9 +67,7 @@ class AddComment(View):
     def post(self, request):
 
         post = Post.objects.get(id=request.POST['post-id'])
-
-        if request.user.is_authenticated:
-
+        if str(request.user) != 'AnonymousUser':
             comment = Comment(
                 post=post,
                 author=request.user,

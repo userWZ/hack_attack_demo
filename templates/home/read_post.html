@@ -18,13 +18,21 @@
                 </li>
             {% endfor %}
         </ul>
-        <form method="POST" action="/add-comment" class="mt-5">
+        <form id="comment-form" method="POST" action="/add-comment" class="mt-5">
             {% csrf_token %}
             <input type="hidden" name="post-id" value='{{ post.id }}'>
             <div class="form-group">
                 <textarea class="form-control" name="comment-textarea" id="comment-textarea" rows="3"></textarea>
-                <button class="btn btn-primary mt-3" type="submit">Add Comment</button>
+                <button id="submit-button" class="btn btn-primary mt-3" type="button">Add Comment</button>
             </div>
         </form>
     </div>
+{% endblock %}
+
+{% block extra_script %}
+<script>
+    document.getElementById('submit-button').addEventListener('click', function() {
+        document.getElementById('comment-form').submit();
+    });
+</script>
 {% endblock %}

@@ -13,9 +13,11 @@ The main reference is , <a href="https://whitehatways.com/cross-site-scripting-a
 <br><code>python seed.py</code>
 
 3. Run the server
+
 <br>Run <code>python ./manage.py runserver</code> to begin!
 
 4. To XSS
+
 The post page can add comment and show the comments written by logged or anonymous users. So the anonymous users can 
 inject the script code in the comments by XSS. Everyone open the post page will trigger the xss code which may leak
 users information such like cookies, passwords and affect the use of the website.
@@ -35,6 +37,7 @@ some xss code like:
 ```
 
 5. To CSRF
+
 To CSRF We need to open a fake website by http server use following bash code
 ```bash
 python -m http.server 8080
@@ -43,6 +46,7 @@ when you in the logged in the website, and Visit the `127.0.0.1:8080`.
 You commented on something that was not manned by you
 
 6. To sql injection
+
 The home page have a search input which have risks of SQL injection,
 We can inject the database by some SQL code such like:
 - get django user list

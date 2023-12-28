@@ -26,6 +26,8 @@ SECRET_KEY = 'django-insecure-@i8np#de*@kn&y64&dxu&wpa%=&(*p$+0i=-8i5e=hy43@3g5&
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
+CORS_ALLOW_CREDENTIALS = True
+CORS_ORIGIN_WHITELIST = ('*',)
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [

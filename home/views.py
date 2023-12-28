@@ -9,15 +9,16 @@ from django.contrib.auth import authenticate, login, logout
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
 
+
 # Create your views here.
 
 
 class Index(View):
-
     template_name = 'home/index.html'
     context = {}
 
     def get(self, request):
+        self.context['rows'] = []
         search_val = (request.GET.get('search') or '').strip()
         if search_val:
             self.context['rows'] = self.search(search_val)
@@ -30,15 +31,12 @@ class Index(View):
         return render(request, template_name=self.template_name, context=self.context)
 
     def search(self, search_val):
-
         sql = """
                 SELECT title
                 FROM home_post
             """
 
         sql += f"WHERE title LIKE '%{search_val}%'"
-
-
 
         with connection.cursor() as cursor:
             cursor.execute(sql)
@@ -49,14 +47,11 @@ class Index(View):
         return rows
 
 
-
 class ReadPost(View):
-
     template_name = 'home/read_post.html'
     context = {}
 
     def get(self, request, post_id):
-
         post = Post.objects.get(id=post_id)
         comments = Comment.objects.all().filter(post=post)
 
@@ -64,6 +59,7 @@ class ReadPost(View):
         self.context['comments'] = comments
 
         return render(request, template_name=self.template_name, context=self.context)
+
 
 @method_decorator(csrf_exempt, name='dispatch')
 class AddComment(View):
@@ -93,6 +89,8 @@ class AddComment(View):
 
 
 def custom_login(request):
+    if request.user.is_authenticated:
+        return redirect('home')
     if request.method == 'POST':
         form = CustomLoginForm(request, data=request.POST)
         if form.is_valid():
@@ -105,6 +103,7 @@ def custom_login(request):
     else:
         form = CustomLoginForm(request)
     return render(request, 'registration/login.html', {'form': form})
+
 
 def logout_view(request):
     logout(request)

